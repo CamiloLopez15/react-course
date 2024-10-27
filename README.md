@@ -83,3 +83,5 @@ expect(message).toBe(`Hola ${name}`);``. En ese caso definimos que message debe 
 Algunos métodos son:
 
 -   **_toBe_**: lo que le enviemos como parámetro debe ser igual a lo que está dentro del `expect`
+-   **_toEqual_**: sirve para validar si los que tenemos es igual a lo que está en el `expect`. La diferencia entre `toBe` y `toEqual`, es que el último compara a nivel profundo, sirve para comparar objetos el otro no.
+-   **_toStrictEqual_**: funciona igual que el `toEqual` pero esté compara las propiedades que tienes valores en `undefined`, en otra palabra, es más riguroso que el `toEqual`.
