@@ -86,3 +86,4 @@ Algunos métodos son:
 -   **_toEqual_**: sirve para validar si los que tenemos es igual a lo que está en el `expect`. La diferencia entre `toBe` y `toEqual`, es que el último compara a nivel profundo, sirve para comparar objetos el otro no.
 -   **_toStrictEqual_**: funciona igual que el `toEqual` pero esté compara las propiedades que tienes valores en `undefined`, en otra palabra, es más riguroso que el `toEqual`.
 -   **_toBeFalsy_**: valida que el valor que esperemos del `expect` sea un valor falsy.
+-   **_toHaveLength_**: sirve para validar si un array tiene el tamaño que nosotros le especifiquemos.
