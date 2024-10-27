@@ -61,4 +61,25 @@ Acá es donde aplicamos las acciones o estímulos al componente y trabajos sobre
 
 Es observar el comportamiento resultado y validar si es lo que estamos esperando. Por ejemplo, ver si el componente al hacer clic cambia algo, como una variables, o si simplemente no hace nada.
 
+## Jest
 
+En esta sección manejaremos comando, consejo e información respecto a Jest.
+
+### Comandos
+
+#### Describe
+
+La función `describe("Acá va un descripción", () => {...Acá va el código del test})` nos sirve para encapsular un código de Jest y definirle un título, en otras palabras, sirve definirle un título o descripción a un conjunto de pruebas.
+
+#### Test
+
+Se utiliza para definir las pruebas que deseamos hacer, por ejemplo `test("Acá va un descripción", () => {...Acá va el código del test})`.
+
+#### Expect
+
+Se utiliza para establecer el resultamos que esperemos de determinado test, función o prueba que hagamos, y luego concatenamos métodos para definir como queremos que actué el test, si lo que nos arroja la función tiene que ser igual, diferente, que esperas, etc. Por ejemplo ``
+expect(message).toBe(`Hola ${name}`);``. En ese caso definimos que message debe ser igual a "Hola ${name}".
+
+Algunos métodos son:
+
+-   **_toBe_**: lo que le enviemos como parámetro debe ser igual a lo que está dentro del `expect`
