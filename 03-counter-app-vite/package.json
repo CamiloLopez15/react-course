@@ -7,7 +7,7 @@
         "dev": "vite",
         "build": "tsc -b && vite build",
         "lint": "eslint .",
-        "test": "jest",
+        "test": "jest --watchAll",
         "test:cov": "jest --coverage --watchAll"
     },
     "dependencies": {
