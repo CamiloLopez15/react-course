@@ -86,4 +86,26 @@ Algunos métodos son:
 -   **_toEqual_**: sirve para validar si los que tenemos es igual a lo que está en el `expect`. La diferencia entre `toBe` y `toEqual`, es que el último compara a nivel profundo, sirve para comparar objetos el otro no.
 -   **_toStrictEqual_**: funciona igual que el `toEqual` pero esté compara las propiedades que tienes valores en `undefined`, en otra palabra, es más riguroso que el `toEqual`.
 -   **_toBeFalsy_**: valida que el valor que esperemos del `expect` sea un valor falsy.
+-   **_toBeTruthy_**: sirve para validar si el valor es un truthy.
 -   **_toHaveLength_**: sirve para validar si un array tiene el tamaño que nosotros le especifiquemos.
+-   **_toContain_**: sirve para validar algo contiene lo que nosotros le especifiquemos.
+-   **_toMatchSnapshot_**: sirve para validar si el componente es igual a la Snapshot que tenemos.
+
+Ahora bien, Jest no es mi útil cuando deseamos validar un componente React y ahí es cuando entra la librería _@testing-library/react_ la cual nos permite evaluar el propio DOM mediante la creación de Snapshot y otros métodos, esta librería le pertenece al grupo de [Testing Library](https://testing-library.com/) este nos permite hacer pruebas en componente de varios Frameworks, en este caso usaremos _React_.
+
+### React Testing Library
+
+Esta librería nos sirve para realizar pruebas en componentes de _React_, esta librería renderiza dicho componentes y nos permite interactuar con a ellos.
+
+#### Render
+
+Es el método que usamos para renderizar un componente y poder hacer prueba con este. Para renderizar el componente debemos hacer lo siguiente: `const render = render(<App prop1={prop1} prop2={prop2} />);` de esta forma se renderiza el componente y tendremos acceso a varías propiedades, estas son:
+
+- **_container_**: Es en resumidas cuentas el window en una página web, nos permite interactuar con el como si fuese desde JavaScript a HTML.
+- **_getByText_**: Busca el texto que le enviemos como parámetros en el componente y devuelve el primer elemento que encontró con ese texto.
+- **_getByTestId_**: Busca el test id que le enviemos como parámetro en el componente y devuelve el primer elemento que encontró con ese test id. Para definirle el test id a un componente se hace de la siguiente forma `<h1 data-testid="test-title">{title}</h1>`, es un atributo para el elemento.
+- **_getByText_**: Busca el texto que le enviemos como parámetros en el componente y devuelve el primer elemento que encontró con ese texto.
+
+#### Screen
+
+Screen es un método que importamos de la librería, este nos dará la información de lo que renderizemos, nos dará el body del HTML que se renderiza al ejecutar el método Render. Este tendrá los mismos métodos que el render y con algunos añadidos, pero no contará con el `container`.
