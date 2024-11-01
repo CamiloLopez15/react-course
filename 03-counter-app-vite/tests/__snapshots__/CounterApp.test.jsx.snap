@@ -10,16 +10,26 @@ exports[`Pruebas en el componente CounterApp El componente debe hacer  match con
     100
      
   </h2>
-  <button>
-     +1 
-  </button>
-  <button>
-     -1 
+  <button
+    data-testid="test-button-+1"
+  >
+     
+    +1
+     
   </button>
   <button
-    aria-label="btn-reset"
+    data-testid="test-button--1"
   >
-     Reset 
+     
+    -1
+     
+  </button>
+  <button
+    aria-label="test-button-reset"
+  >
+     
+    Reset
+     
   </button>
 </div>
 `;
