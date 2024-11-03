@@ -31,6 +31,22 @@ _Hooks_ son una nueva característica en React 16.8. Estos te permiten usar el e
 
 -   Por convención, es común nombrar el argumento de estado pendiente como la primera letra del nombre de la variable de estado, como a para age. No obstante, también puedes llamarlo como prevAge o cualquier otra cosa que te resulte más clara.
 
+## useEffect
+
+`useEffect` se utiliza para que podamos ejecutar un efecto secundario en base a evento principal, por ejemplo, deseamos que cada vez que se actualice un número se guarde en la base de datos, entonces el efecto principal sería la actualización del número y en secundario sería guardar dicho número en la base de datos.
+Según la documentación de [_React_](https://es.react.dev/reference/react/useEffect) el `useEffect` es usado para sincronizar un componente con un sistema externo, en el caso anterior sería la sincronización entre la base de datos y la web.
+
+### ¿Como usarlo?
+
+`useEffect(callback, [...dependencies])`
+
+- **Callback**: El callback es la función que sería ejecutada cuando se desee ejecutar el efecto. Esta función puede retornar otra función la cual será la encargada de limpiar cualquier interacción que haya en caso tal que sea necesario. Esta se ejecutará cuando el componente sea desmontado, por ejemplo, si nos conectamos a una base de datos, en el return del callback vamos a desconectarnos de dicha base de datos.
+- **Dependencies**: Son los valores que se tomarán en cuenta para ejecutar el efecto secundario, estas dependencias pueden ser estados, props, etc.
+
+### Tips
+
+- Cuando usamos el modo estricto en _React_ (Strict mode) el _useEffect_ será ejecutado dos veces para poder detectar problemas en el ciclo de vida de la hook.
+
 # Pruebas unitarias y de integración
 
 Las pruebas son las que se realizan a los componente para verificar si su funcionamiento es el correcto, pero existe dos tipos de pruebas, las unitarias y las de integración.
@@ -101,10 +117,10 @@ Esta librería nos sirve para realizar pruebas en componentes de _React_, esta l
 
 Es el método que usamos para renderizar un componente y poder hacer prueba con este. Para renderizar el componente debemos hacer lo siguiente: `const render = render(<App prop1={prop1} prop2={prop2} />);` de esta forma se renderiza el componente y tendremos acceso a varías propiedades, estas son:
 
-- **_container_**: Es en resumidas cuentas el window en una página web, nos permite interactuar con el como si fuese desde JavaScript a HTML.
-- **_getByText_**: Busca el texto que le enviemos como parámetros en el componente y devuelve el primer elemento que encontró con ese texto.
-- **_getByTestId_**: Busca el test id que le enviemos como parámetro en el componente y devuelve el primer elemento que encontró con ese test id. Para definirle el test id a un componente se hace de la siguiente forma `<h1 data-testid="test-title">{title}</h1>`, es un atributo para el elemento.
-- **_getByText_**: Busca el texto que le enviemos como parámetros en el componente y devuelve el primer elemento que encontró con ese texto.
+-   **_container_**: Es en resumidas cuentas el window en una página web, nos permite interactuar con el como si fuese desde JavaScript a HTML.
+-   **_getByText_**: Busca el texto que le enviemos como parámetros en el componente y devuelve el primer elemento que encontró con ese texto.
+-   **_getByTestId_**: Busca el test id que le enviemos como parámetro en el componente y devuelve el primer elemento que encontró con ese test id. Para definirle el test id a un componente se hace de la siguiente forma `<h1 data-testid="test-title">{title}</h1>`, es un atributo para el elemento.
+-   **_getByText_**: Busca el texto que le enviemos como parámetros en el componente y devuelve el primer elemento que encontró con ese texto.
 
 #### Screen
 
