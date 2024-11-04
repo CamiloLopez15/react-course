@@ -1,6 +1,6 @@
 import { FormattedGif } from "../services/getGifs";
 
-export const GifGridItem = ({ title, url }: FormattedGif) => {
+const GifGridItem = ({ title, url }: FormattedGif) => {
     return (
         <div className="card">
             <img src={url} alt={title} />
@@ -8,3 +8,5 @@ export const GifGridItem = ({ title, url }: FormattedGif) => {
         </div>
     );
 };
+
+export default GifGridItem;
