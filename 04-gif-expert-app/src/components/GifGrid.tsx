@@ -11,7 +11,7 @@ function GifGrid({ category }: GifGridProps) {
         <div>
             <h3>{category}</h3>
             <div className="card-grid">
-                {isLoading 
+                {isLoading
                 ? (<h2>Loading...</h2>)
                 : (gifs.map((gif) => <GifGridItem key={gif.id} {...gif} />))}
             </div>
