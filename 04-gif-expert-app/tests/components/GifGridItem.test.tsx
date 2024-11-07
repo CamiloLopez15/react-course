@@ -11,4 +11,17 @@ describe("Pruebas en el componente GifGridItem", () => {
         render(<GifGridItem title={title} id={id} url={url} />);
         expect(screen).toMatchSnapshot();
     });
+
+    test("debe mostrar la imagen con el url y el ALT indicado", () => {
+        render(<GifGridItem title={title} id={id} url={url} />);
+        const { src, alt }: HTMLImageElement = screen.getByRole("img");
+
+        expect(src).toEqual(url);
+        expect(alt).toEqual(title);
+    });
+
+    test("debe de mostrar el título dentro del componente", () => {
+        render(<GifGridItem title={title} id={id} url={url} />);
+        expect(screen.getByText(title)).toBeTruthy();
+    });
 });
