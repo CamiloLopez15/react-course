@@ -14,7 +14,6 @@ export const getGifs = async (category: string) => {
         redirect: "follow",
     });
     const { data } = await response.json();
-    console.log(data);
 
     const gifs: FormattedGif[] = (data as GIF[]).map((gif) => ({
         id: gif.id,
