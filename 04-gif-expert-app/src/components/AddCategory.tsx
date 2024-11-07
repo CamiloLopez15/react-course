@@ -19,7 +19,7 @@ const AddCategory = ({ onAddCategory }: AddCategoryProps) => {
         setInputValue("");
     };
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} aria-label="form">
             <input
                 type="search"
                 name="Search"
