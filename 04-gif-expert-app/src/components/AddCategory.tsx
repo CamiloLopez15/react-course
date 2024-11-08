@@ -14,7 +14,6 @@ const AddCategory = ({ onAddCategory }: AddCategoryProps) => {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formattedInput = inputValue.trim();
-        console.log(formattedInput);
         if (formattedInput.length < 1) return;
         onAddCategory(formattedInput);
         setInputValue("");
