@@ -2,12 +2,20 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { AddCategory } from "../../src/components";
 
 describe("Pruebas en el componente AddCategory", () => {
-    const onAddCategory = (category: string) => console.log(category);
+    const onAddCategory = jest.fn();
     const newValueInput = "Saitama";
 
     test("debe concordar con el Snapshot", () => {
         render(<AddCategory onAddCategory={onAddCategory} />);
         expect(screen).toMatchSnapshot();
+    });
+
+    test("no debe de llamar onNewCategory si el input está vacío", () => {
+        render(<AddCategory onAddCategory={onAddCategory} />);
+        const form = screen.getByRole("form");
+        fireEvent.submit(form);
+
+        expect(onAddCategory).not.toHaveBeenCalled();
     });
 
     test("debe cambiar el valor de la caja de texto", () => {
@@ -29,5 +37,9 @@ describe("Pruebas en el componente AddCategory", () => {
         fireEvent.input(input, { target: { value: newValueInput } });
         fireEvent.submit(form);
         expect(input.value).toBe("");
+        expect(onAddCategory).toHaveBeenCalled();
+        expect(onAddCategory).toHaveBeenCalledTimes(1);
+        expect(onAddCategory).toHaveBeenCalledWith(newValueInput);
     });
+
 });

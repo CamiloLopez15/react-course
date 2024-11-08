@@ -40,12 +40,12 @@ Según la documentación de [_React_](https://es.react.dev/reference/react/useEf
 
 `useEffect(callback, [...dependencies])`
 
-- **Callback**: El callback es la función que sería ejecutada cuando se desee ejecutar el efecto. Esta función puede retornar otra función la cual será la encargada de limpiar cualquier interacción que haya en caso tal que sea necesario. Esta se ejecutará cuando el componente sea desmontado, por ejemplo, si nos conectamos a una base de datos, en el return del callback vamos a desconectarnos de dicha base de datos.
-- **Dependencies**: Son los valores que se tomarán en cuenta para ejecutar el efecto secundario, estas dependencias pueden ser estados, props, etc.
+-   **Callback**: El callback es la función que sería ejecutada cuando se desee ejecutar el efecto. Esta función puede retornar otra función la cual será la encargada de limpiar cualquier interacción que haya en caso tal que sea necesario. Esta se ejecutará cuando el componente sea desmontado, por ejemplo, si nos conectamos a una base de datos, en el return del callback vamos a desconectarnos de dicha base de datos.
+-   **Dependencies**: Son los valores que se tomarán en cuenta para ejecutar el efecto secundario, estas dependencias pueden ser estados, props, etc.
 
 ### Tips
 
-- Cuando usamos el modo estricto en _React_ (Strict mode) el _useEffect_ será ejecutado dos veces para poder detectar problemas en el ciclo de vida de la hook.
+-   Cuando usamos el modo estricto en _React_ (Strict mode) el _useEffect_ será ejecutado dos veces para poder detectar problemas en el ciclo de vida de la hook.
 
 # Pruebas unitarias y de integración
 
@@ -106,8 +106,15 @@ Algunos métodos son:
 -   **_toHaveLength_**: sirve para validar si un array tiene el tamaño que nosotros le especifiquemos.
 -   **_toContain_**: sirve para validar algo contiene lo que nosotros le especifiquemos.
 -   **_toMatchSnapshot_**: sirve para validar si el componente es igual a la Snapshot que tenemos.
+-   **_toHaveBeenCalled_**: sirve para validar si un mock de una función fue llamado.
+-   **_toHaveBeenCalledTimes_**: sirve para validar si un mock de una función fue llamado la cantidad de veces especificadas.
+-   **_toHaveBeenCalledWith_**: sirve para validar si un mock de una función fue llamado con el argumento que le especifiquemos.
 
 Ahora bien, Jest no es mi útil cuando deseamos validar un componente React y ahí es cuando entra la librería _@testing-library/react_ la cual nos permite evaluar el propio DOM mediante la creación de Snapshot y otros métodos, esta librería le pertenece al grupo de [Testing Library](https://testing-library.com/) este nos permite hacer pruebas en componente de varios Frameworks, en este caso usaremos _React_.
+
+#### Mock función
+
+Un _mock_ de una función es la simulación de una función la cual queramos evaluar. Para ello hacemos lo siguiente
 
 ### React Testing Library
 
