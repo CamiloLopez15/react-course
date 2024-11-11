@@ -24,7 +24,7 @@ describe("Pruebas en el componente <GifExpertApp />", () => {
         expect(screen).toMatchSnapshot();
     });
 
-    test("Validar que se añade la nueva categoría", async () => {
+    test("Validar que se añade la nueva categoría", () => {
         render(<GifExpertApp />);
         addedCategory();
 
@@ -32,7 +32,7 @@ describe("Pruebas en el componente <GifExpertApp />", () => {
         expect(screen.getByText(newCategory)).toBeTruthy();
     });
 
-    test("Validar que no se añaden categorías duplicadas", async () => {
+    test("Validar que no se añaden categorías duplicadas", () => {
         render(<GifExpertApp />);
         addedCategory();
         addedCategory();
