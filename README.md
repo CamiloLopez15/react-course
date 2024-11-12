@@ -129,6 +129,14 @@ Es el método que usamos para renderizar un componente y poder hacer prueba con 
 -   **_getByTestId_**: Busca el test id que le enviemos como parámetro en el componente y devuelve el primer elemento que encontró con ese test id. Para definirle el test id a un componente se hace de la siguiente forma `<h1 data-testid="test-title">{title}</h1>`, es un atributo para el elemento.
 -   **_getByText_**: Busca el texto que le enviemos como parámetros en el componente y devuelve el primer elemento que encontró con ese texto.
 
+### WaitFor
+
+WaitFor es una función de la librería de `testing-library/react` que la utilizamos para esperar, recibe una _call-function_ la cual debe tener una expresión de Jest, esta se ejecutará y si se cumple sigue sino arroja un error, funciona de forma similar a una promesa, la utilizamos cuando deseamos que las pruebas se ejecuten cuando la interface de usuario haya cargado cierto contenido, por ejemplo.
+
+### RenderHook
+
+Los utilizamos para renderizar un hook y hacer pruebas de este, esto simula una aplicación de `React` para que pueda funcionar el hook. Dicho función recibe una _call-function_ y dentro de esa función debemos llamar el hook.
+
 #### Screen
 
 Screen es un método que importamos de la librería, este nos dará la información de lo que renderizemos, nos dará el body del HTML que se renderiza al ejecutar el método Render. Este tendrá los mismos métodos que el render y con algunos añadidos, pero no contará con el `container`.
