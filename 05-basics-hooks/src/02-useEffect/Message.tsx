@@ -1,5 +1,17 @@
+import { useEffect } from "react";
+
 export const Message = () => {
-  return (
-    <div>Message</div>
-  )
-}
+    useEffect(() => {
+        console.log("Message mounted");
+
+        return () => {
+            console.log("Message UnMounted");
+        };
+    }, []);
+
+    return (
+        <>
+            <h3>Usuario ya existe</h3>
+        </>
+    );
+};
