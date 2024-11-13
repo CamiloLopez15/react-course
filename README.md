@@ -41,11 +41,13 @@ Según la documentación de [_React_](https://es.react.dev/reference/react/useEf
 `useEffect(callback, [...dependencies])`
 
 -   **Callback**: El callback es la función que sería ejecutada cuando se desee ejecutar el efecto. Esta función puede retornar otra función la cual será la encargada de limpiar cualquier interacción que haya en caso tal que sea necesario. Esta se ejecutará cuando el componente sea desmontado, por ejemplo, si nos conectamos a una base de datos, en el return del callback vamos a desconectarnos de dicha base de datos.
+    -   Ahora bien, dentro del callback, podemos retornar una función la cual es llamada clean up, usaremos esta cuando queramos limpiar alguna suscripción, escucha o lo que deseemos. Funcionaría similar al onMounted, o sea, cuando se desarme el componente se ejecutaría dicha función.
 -   **Dependencies**: Son los valores que se tomarán en cuenta para ejecutar el efecto secundario, estas dependencias pueden ser estados, props, etc.
 
 ### Tips
 
 -   Cuando usamos el modo estricto en _React_ (Strict mode) el _useEffect_ será ejecutado dos veces para poder detectar problemas en el ciclo de vida de la hook.
+-   _React_ recomienda debe haber efecto especializados, o sea, no debemos tener un solo useEffect que haga todo, sino separarlo entre varios y que cada uno cumpla con una función en especifico.
 
 # Pruebas unitarias y de integración
 
