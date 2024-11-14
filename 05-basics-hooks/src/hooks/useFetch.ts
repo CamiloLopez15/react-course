@@ -56,7 +56,6 @@ export const useFetch = <T>(url: string) => {
         }
 
         const data = (await response.json()) as T;
-        console.log({ data });
 
         setState({
             data,
