@@ -10,6 +10,12 @@ interface UseFetchState<T> {
     };
 }
 
+interface LocalCache {
+    [key: string]: unknown;
+}
+
+const localCache: LocalCache = {};
+
 export const useFetch = <T>(url: string) => {
     const [state, setState] = useState<UseFetchState<T>>({
         data: null,
@@ -23,7 +29,7 @@ export const useFetch = <T>(url: string) => {
 
     useEffect(() => {
         getFetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [url]);
 
     const setLoadingState = () => {
@@ -39,6 +45,20 @@ export const useFetch = <T>(url: string) => {
     };
 
     const getFetch = async () => {
+        const cache = localCache[url];
+        if (cache) {
+            setState({
+                data: cache as T,
+                isLoading: false,
+                hasError: false,
+                error: {
+                    code: null,
+                    message: null,
+                },
+            });
+            return;
+        }
+
         setLoadingState();
         const response = await fetch(url);
 
@@ -66,6 +86,9 @@ export const useFetch = <T>(url: string) => {
                 message: null,
             },
         });
+
+        // Manejo de cache
+        localCache[url] = data;
     };
 
     return {
