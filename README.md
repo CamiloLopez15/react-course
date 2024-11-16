@@ -107,15 +107,27 @@ _useMemo_ es un Hook de React que te permite guardar en caché el resultado de u
 
 `const variable = useMemo(() => function(dependencies), [dependencies])`
 
--   _variable_: Será donde almacenos el valor que será memorizado, a este variable vamos a acceder siempre que queramos obtener dicho valor.
--   _function_: Debe ser contenida por una función pura que no acepte argumentos y devuelva cualquier valor y la _function_ como tal debe ser la función que calcule cualquier valor.
--   _dependencies_: Son los valores reactivos que utilizará _React_ para saber cuando tiene que volver a ejecutar dicha función, si alguna de las _dependencias_ cambia se ejecutará de nuevo la función, en caso de que no persistirá el valor que ya tenemos.
+-   **variable**: Será donde almacenos el valor que será memorizado, a este variable vamos a acceder siempre que queramos obtener dicho valor.
+-   **function**: Debe ser contenida por una función pura que no acepte argumentos y devuelva cualquier valor y la **function** como tal debe ser la función que calcule cualquier valor.
+-   **dependencies**: Son los valores reactivos que utilizará _React_ para saber cuando tiene que volver a ejecutar dicha función, si alguna de las _dependencias_ cambia se ejecutará de nuevo la función, en caso de que no persistirá el valor que ya tenemos.
 
 ### Tips
 
-- En el renderizado inicial, useMemo devuelve el resultado de llamar a calcularValor sin argumentos.
-- Debe ser usado solo si necesitamos mejorar el rendimiento, sino, es mejor usar un estado.
-- Guardar en caché valores como este también se conoce como _memoización_, y es por eso que el Hook se llama useMemo.
+-   En el renderizado inicial, useMemo devuelve el resultado de llamar a calcularValor sin argumentos.
+-   Debe ser usado solo si necesitamos mejorar el rendimiento, sino, es mejor usar un estado.
+-   Guardar en caché valores como este también se conoce como _memoización_, y es por eso que el Hook se llama useMemo.
+
+## useCallback
+
+_useCallback_ es un Hook de React que te permite almacenar la definición de una función entre renderizados subsecuentes.
+
+### ¿Como usarlo?
+
+`const memoizedFunction = useCallback(functionToMemoize, [dependencies])`
+
+**memoizedFunction**: Función memorizada, llamaremos a esta variable y la llamaremos como una función para acceder a la función memorizada.
+**functionToMemoize**: Acá definiremos la función que deseemos memorizar, esta función puede recibir parámetros y devolver cualquier cosa. _React_ devolverá (¡no llamará!) tu función durante el renderizado inicial. Esta función no cambiará hasta que algunas de las dependencias cambien.
+**dependencies**: Es lo que se tendrá en cuenta para volver a definir la función y tenga los valores actualizado. Funcionan iguales que en _useEffect_, _useMemo_ y similares.
 
 # Pruebas unitarias y de integración
 
