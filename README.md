@@ -86,17 +86,36 @@ _useLayoutEffect_ es una versión de useEffect que se acciona antes que el naveg
 -   El código dentro de useLayoutEffect y todas las actualizaciones de estado programadas desde él bloquean el navegador de volver a pintar en la pantalla. Cuando es usado excesivamente, puede hacer tu aplicación muy lenta. Cuando sea posible se prefiere usar useEffect. Renderizar en dos pasadas y bloquear el navegador perjudica el desempeño.
 
 ## memo
+
 Se utiliza para memorizar componente y evitar su constante renderizado, esto se aplica cuando un componente padre cambia un estado pero aunque este estado no afecte al componente hijo este será actualizado, por ende, si tenemos un componente que hace procesos pesados sería buena idea usar render.
 
 ### ¿Como usarlo?
 
 `memo(componente)`
 
-- **Componente**: Este vendría siendo la definición de la función o componente al momento de crearlo que debe ser englobado por el _memo_
+-   **Componente**: Este vendría siendo la definición de la función o componente al momento de crearlo que debe ser englobado por el _memo_
 
 ### Tips
 
-- Es recomendado usarlo unicamente cuando sea necesario, o sea, cuando baje el rendimiento de la página al momento de renderizar de nuevo el componente hijo cuando no sea necesario.
+-   Es recomendado usarlo unicamente cuando sea necesario, o sea, cuando baje el rendimiento de la página al momento de renderizar de nuevo el componente hijo cuando no sea necesario.
+
+## useMemo
+
+_useMemo_ es un Hook de React que te permite guardar en caché el resultado de un cálculo entre renderizados. Comúnmente es utilizado para almacenar resultados de funciones que consumen muchos recursos para evitar la ejecución constante de estas de forma innecesaria.
+
+### ¿Como usarlo?
+
+`const variable = useMemo(() => function(dependencies), [dependencies])`
+
+-   _variable_: Será donde almacenos el valor que será memorizado, a este variable vamos a acceder siempre que queramos obtener dicho valor.
+-   _function_: Debe ser contenida por una función pura que no acepte argumentos y devuelva cualquier valor y la _function_ como tal debe ser la función que calcule cualquier valor.
+-   _dependencies_: Son los valores reactivos que utilizará _React_ para saber cuando tiene que volver a ejecutar dicha función, si alguna de las _dependencias_ cambia se ejecutará de nuevo la función, en caso de que no persistirá el valor que ya tenemos.
+
+### Tips
+
+- En el renderizado inicial, useMemo devuelve el resultado de llamar a calcularValor sin argumentos.
+- Debe ser usado solo si necesitamos mejorar el rendimiento, sino, es mejor usar un estado.
+- Guardar en caché valores como este también se conoce como _memoización_, y es por eso que el Hook se llama useMemo.
 
 # Pruebas unitarias y de integración
 

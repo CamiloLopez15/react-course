@@ -7,12 +7,13 @@ import { createRoot } from "react-dom/client";
 // import FormWithCustomHook from "./02-useEffect/FormWithCustomHook";
 // import { MultipleCustomHooks } from "./03-example/MultipleCustomHooks";
 // import { FocusScreen } from "./04-useRef/FocusScreen";
-import { Memorize } from "./06-memos/Memorize";
+// import { Memorize } from "./06-memos/Memorize";
 
 import "./index.css";
+import { MemoHook } from "./06-memos/MemoHook";
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
-        <Memorize />
+        <MemoHook />
     </StrictMode>
 );
