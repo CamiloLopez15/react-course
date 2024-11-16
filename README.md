@@ -51,22 +51,39 @@ Según la documentación de [_React_](https://es.react.dev/reference/react/useEf
 
 ## useRef
 
-El _useRef_ es usado cuando deseamos almacenar alguna referencia o valor que cuando este sea actualizado el componente *no se vuelva a renderiza, o sea, actualizar*. Comúnmente es usado para almacenar la referencia a un elemento HTML.
+El _useRef_ es usado cuando deseamos almacenar alguna referencia o valor que cuando este sea actualizado el componente _no se vuelva a renderiza, o sea, actualizar_. Comúnmente es usado para almacenar la referencia a un elemento HTML.
 
 ### ¿Como usarlo?
 
 `const ref = useRef(valorInicial)`
 
-- **Valor inicial**: Es el valor inicial que tendrá la referencia.
-- **ref**: Será un objeto con una sola propiedad la cual será current.
+-   **Valor inicial**: Es el valor inicial que tendrá la referencia.
+-   **ref**: Será un objeto con una sola propiedad la cual será current.
 
 ### Tips
 
-- Puedes mutar la propiedad _ref.current_. A diferencia del estado, es mutable. Sin embargo, si contiene un objeto que se utiliza para el renderizado (por ejemplo, una parte de tu estado), entonces no deberías mutar ese objeto.
-- Si cambias el estado _React_ no vuelve y renderiza el componente ya que no es dinámico, este se comporta como un objeto de JavaScript.
-- No escribas ni leas _ref.current_ durante el renderizado, excepto para la inicialización. Esto hace que el comportamiento de tu componente sea impredecible.
-- La información es local para cada copia de tu componente (a diferencia de las variables externas, que son compartidas).
-- No puedes definir una _ref_ en un componente actualizado. Si deseas hacer eso debes englobar el componente dentro de la función `forwardRef(componente)` al momento de crear el componente.
+-   Puedes mutar la propiedad _ref.current_. A diferencia del estado, es mutable. Sin embargo, si contiene un objeto que se utiliza para el renderizado (por ejemplo, una parte de tu estado), entonces no deberías mutar ese objeto.
+-   Si cambias el estado _React_ no vuelve y renderiza el componente ya que no es dinámico, este se comporta como un objeto de JavaScript.
+-   No escribas ni leas _ref.current_ durante el renderizado, excepto para la inicialización. Esto hace que el comportamiento de tu componente sea impredecible.
+-   La información es local para cada copia de tu componente (a diferencia de las variables externas, que son compartidas).
+-   No puedes definir una _ref_ en un componente actualizado. Si deseas hacer eso debes englobar el componente dentro de la función `forwardRef(componente)` al momento de crear el componente.
+
+## useLayoutEffect
+
+_useLayoutEffect_ es una versión de useEffect que se acciona antes que el navegador vuelva a pintar la pantalla. En otras palabras, _useLayoutEffect_ bloquea el navegador de pintarse.
+
+### ¿Como usarlo?
+
+`useLayoutEffect(setup, dependencies)`
+
+-   **Callback**: El callback es la función que sería ejecutada cuando se desee ejecutar el efecto. Esta función puede retornar otra función la cual será la encargada de limpiar cualquier interacción que haya en caso tal que sea necesario. Esta se ejecutará cuando el componente sea desmontado, por ejemplo, si nos conectamos a una base de datos, en el return del callback vamos a desconectarnos de dicha base de datos.
+    -   Ahora bien, dentro del callback, podemos retornar una función la cual es llamada clean up, usaremos esta cuando queramos limpiar alguna suscripción, escucha o lo que deseemos. Funcionaría similar al onMounted, o sea, cuando se desarme el componente se ejecutaría dicha función.
+-   **Dependencies**: Son los valores que se tomarán en cuenta para ejecutar el efecto secundario, estas dependencias pueden ser estados, props, etc.
+
+### Tips
+
+-   Si algunas de tus dependencias son objetos o funciones definidas dentro del componente, hay un riesgo de que ellas causen el efecto de volver a ejecutarse más de lo necesario. Para arreglar esto, elimina dependencias de objetos y funciones innecesarias. También puedes extraer actualizaciones de estados y lógica que no es reactiva fuera de tu Efecto.
+-   El código dentro de useLayoutEffect y todas las actualizaciones de estado programadas desde él bloquean el navegador de volver a pintar en la pantalla. Cuando es usado excesivamente, puede hacer tu aplicación muy lenta. Cuando sea posible se prefiere usar useEffect. Renderizar en dos pasadas y bloquear el navegador perjudica el desempeño.
 
 # Pruebas unitarias y de integración
 
