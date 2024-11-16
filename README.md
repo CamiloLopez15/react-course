@@ -85,6 +85,19 @@ _useLayoutEffect_ es una versión de useEffect que se acciona antes que el naveg
 -   Si algunas de tus dependencias son objetos o funciones definidas dentro del componente, hay un riesgo de que ellas causen el efecto de volver a ejecutarse más de lo necesario. Para arreglar esto, elimina dependencias de objetos y funciones innecesarias. También puedes extraer actualizaciones de estados y lógica que no es reactiva fuera de tu Efecto.
 -   El código dentro de useLayoutEffect y todas las actualizaciones de estado programadas desde él bloquean el navegador de volver a pintar en la pantalla. Cuando es usado excesivamente, puede hacer tu aplicación muy lenta. Cuando sea posible se prefiere usar useEffect. Renderizar en dos pasadas y bloquear el navegador perjudica el desempeño.
 
+## memo
+Se utiliza para memorizar componente y evitar su constante renderizado, esto se aplica cuando un componente padre cambia un estado pero aunque este estado no afecte al componente hijo este será actualizado, por ende, si tenemos un componente que hace procesos pesados sería buena idea usar render.
+
+### ¿Como usarlo?
+
+`memo(componente)`
+
+- **Componente**: Este vendría siendo la definición de la función o componente al momento de crearlo que debe ser englobado por el _memo_
+
+### Tips
+
+- Es recomendado usarlo unicamente cuando sea necesario, o sea, cuando baje el rendimiento de la página al momento de renderizar de nuevo el componente hijo cuando no sea necesario.
+
 # Pruebas unitarias y de integración
 
 Las pruebas son las que se realizan a los componente para verificar si su funcionamiento es el correcto, pero existe dos tipos de pruebas, las unitarias y las de integración.
