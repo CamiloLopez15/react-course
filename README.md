@@ -49,6 +49,25 @@ Según la documentación de [_React_](https://es.react.dev/reference/react/useEf
 -   Cuando usamos el modo estricto en _React_ (Strict mode) el _useEffect_ será ejecutado dos veces para poder detectar problemas en el ciclo de vida de la hook.
 -   _React_ recomienda debe haber efecto especializados, o sea, no debemos tener un solo useEffect que haga todo, sino separarlo entre varios y que cada uno cumpla con una función en especifico.
 
+## useRef
+
+El _useRef_ es usado cuando deseamos almacenar alguna referencia o valor que cuando este sea actualizado el componente *no se vuelva a renderiza, o sea, actualizar*. Comúnmente es usado para almacenar la referencia a un elemento HTML.
+
+### ¿Como usarlo?
+
+`const ref = useRef(valorInicial)`
+
+- **Valor inicial**: Es el valor inicial que tendrá la referencia.
+- **ref**: Será un objeto con una sola propiedad la cual será current.
+
+### Tips
+
+- Puedes mutar la propiedad _ref.current_. A diferencia del estado, es mutable. Sin embargo, si contiene un objeto que se utiliza para el renderizado (por ejemplo, una parte de tu estado), entonces no deberías mutar ese objeto.
+- Si cambias el estado _React_ no vuelve y renderiza el componente ya que no es dinámico, este se comporta como un objeto de JavaScript.
+- No escribas ni leas _ref.current_ durante el renderizado, excepto para la inicialización. Esto hace que el comportamiento de tu componente sea impredecible.
+- La información es local para cada copia de tu componente (a diferencia de las variables externas, que son compartidas).
+- No puedes definir una _ref_ en un componente actualizado. Si deseas hacer eso debes englobar el componente dentro de la función `forwardRef(componente)` al momento de crear el componente.
+
 # Pruebas unitarias y de integración
 
 Las pruebas son las que se realizan a los componente para verificar si su funcionamiento es el correcto, pero existe dos tipos de pruebas, las unitarias y las de integración.
