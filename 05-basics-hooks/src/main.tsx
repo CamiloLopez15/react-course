@@ -10,11 +10,12 @@ import { createRoot } from "react-dom/client";
 // import { FocusScreen } from "./04-useRef/FocusScreen";
 // import { Memorize } from "./06-memos/Memorize";
 // import { MemoHook } from "./06-memos/MemoHook";
-import { CallBackHook } from "./06-memos/CallbackHook";
+// import { CallBackHook } from "./06-memos/CallbackHook";
+import { Padre } from "./07-homework/Padre";
 
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
-        <CallBackHook />
+        <Padre />
     </StrictMode>
 );
