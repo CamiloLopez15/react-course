@@ -148,3 +148,10 @@ Miremos el ciclo de vida de un _Reducer_
 - El estado es recibido por la aplicación.
 - La página solicita una actualización del estado. *Ojo* la página no debe actualizar o mutar el estado directamente, debe llamar a una de las acciones que el _Reducer_ tiene mapeado.
 - Una vez que la acción sea llamada el _Reducer_ actualizará el estado y lo devolverá. En caso tal, que la acción no exista en el _Reducer_ el tendrá que devolver el estado previo.
+
+
+## Añadidos y referencias
+
+Página de _React_ [AQUÍ](https://es.react.dev/)
+
+**Si quieres aprender sobre como testear aplicaciones de React puedes acceder a estas notas. [AQUÍ](Test.md)**
