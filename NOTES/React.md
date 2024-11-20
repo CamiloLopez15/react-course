@@ -144,11 +144,24 @@ Miremos el ciclo de vida de un _Reducer_
 
 ![Ciclo de vida de un reducer](./assets/reducer-life-cicle.png)
 
-- Primero el _Reducer_ devuelve un estado.
-- El estado es recibido por la aplicación.
-- La página solicita una actualización del estado. *Ojo* la página no debe actualizar o mutar el estado directamente, debe llamar a una de las acciones que el _Reducer_ tiene mapeado.
-- Una vez que la acción sea llamada el _Reducer_ actualizará el estado y lo devolverá. En caso tal, que la acción no exista en el _Reducer_ el tendrá que devolver el estado previo.
+-   Primero el _Reducer_ devuelve un estado.
+-   El estado es recibido por la aplicación.
+-   La página solicita una actualización del estado. _Ojo_ la página no debe actualizar o mutar el estado directamente, debe llamar a una de las acciones que el _Reducer_ tiene mapeado.
+-   Una vez que la acción sea llamada el _Reducer_ actualizará el estado y lo devolverá. En caso tal, que la acción no exista en el _Reducer_ el tendrá que devolver el estado previo.
 
+## useReducer
+
+El _useReducer_ es un hook que nos permite definir un reducer, es comúnmente usado para centralizar la lógica de actualización de estado en un solo lugar y permitir que esta se pueda mantener de manera más fácil.
+
+### ¿Como usarlo?
+
+`const [state, dispatch] = useReducer(reducer, initialArg, init?)`
+
+-   **State**: El _State_ será el estado del reducer, cabe recalcar que este será actualizado cada que se renderice de nuevo el componente, en caso tal que actualices el estado y desees acceder a la nueva versión de este no podrás hasta que se renderice de nuevo el componente.
+-   **Dispatch**: Es lo que usarás para actualizar el estado, por convención, se envía un objeto con dos propiedades, _type_ para especificar el tipo de _Dispatch_ que se usará para actualiza el estado y por último, la propiedad _payload_ que será los argumentos que se enviarán para actualizar la función.
+-   **Reducer**: Es la función encargada de manejar la lógica del estado, lo que planteamos en la sección anterior, este tendrá todos los _Dispatch_ y demás.
+-   **InitialArg**: Es el valor inicial del estado.
+-   **Init**: Es la función inicializadora que se ejecutará en caso tal que quieras definir el estado inicial a partir de lo que devuelva dicha función. Me explico, imagina que el _InitialArg_ tienes un id, pero deseas que el estado inicial sea un _username_, por ende, necesitas pasar dicho _id_ a una función, para ello se recomienda usar el parámetro _init_ en el cual pasarás la función directamente y se definirá como estado inicial lo que devuelva esa función. ¿Por qué no pasar como _initialArg_ la función directamente con el _id_ como parámetro? Porque si hacemos eso, la función se llamaría siempre que se actualice el estado, lo cual, termina siendo menos optimo que pasarla como _init_ que evita este comportamiento.
 
 ## Añadidos y referencias
 
