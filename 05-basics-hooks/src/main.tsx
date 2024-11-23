@@ -1,6 +1,7 @@
 import "./index.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import TodoApp from "./08-useReducer/TodoApp";
 // import CounterApp from "./01-useState/CounterApp";
 // import HooksApp from "./HooksApp";
 // import CounterWithCustomHook from "./01-useState/CounterWithCustomHook";
@@ -12,6 +13,10 @@ import { createRoot } from "react-dom/client";
 // import { MemoHook } from "./06-memos/MemoHook";
 // import { CallBackHook } from "./06-memos/CallbackHook";
 // import { Padre } from "./07-homework/Padre";
-import "./08-useReducer/intro-reducer";
+// import "./08-useReducer/intro-reducer";
 
-createRoot(document.getElementById("root")!).render(<StrictMode></StrictMode>);
+createRoot(document.getElementById("root")!).render(
+    <StrictMode>
+        <TodoApp />
+    </StrictMode>
+);
