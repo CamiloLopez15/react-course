@@ -1,57 +1,23 @@
-import { useEffect, useReducer } from "react";
-import { ActionType, Todo, todoReducer } from "./todoReducer";
+import { useTodo } from "../hooks/useTodo";
 import TodoList from "./TodoList";
 import TodoAdd from "./TodoAdd";
 
-const initialState: Todo[] = [
-    {
-        id: new Date().getTime(),
-        description: "Recolectar la gema del alma",
-        done: false,
-    },
-    {
-        id: new Date().getTime() * 3,
-        description: "Recolectar la gema del Poder",
-        done: false,
-    },
-];
-
-const initReducer = (initialState: Todo[]) => {
-    try {
-        const todosLocalStorage: Todo[] = JSON.parse(localStorage.getItem("todos") || "[]");
-
-        if (todosLocalStorage.length < 1) return initialState;
-        else return todosLocalStorage;
-    } catch (error) {
-        console.error("Error get todos localStorage", error);
-        return initialState;
-    }
-};
-
 function TodoApp() {
-    const [todos, dispatchTodo] = useReducer(
-        todoReducer,
-        initialState,
-        initReducer
-    );
-
-    useEffect(() => {
-        const todosJSON = JSON.stringify(todos);
-        localStorage.setItem("todos", todosJSON);
-    }, [todos]);
-
-    const handleNewTodo = (todo: Todo) => {
-        dispatchTodo({ type: ActionType.add, payload: todo });
-    };
-
-    const handleDeleteTodo = (todo: Todo) => {
-        dispatchTodo({ type: ActionType.delete, payload: todo });
-    };
+    const {
+        todos,
+        handleNewTodo,
+        handleDeleteTodo,
+        handleToggleTodo,
+        handleUpdatedTodo,
+        howManyTodo,
+        howManyTodoPending,
+    } = useTodo([]);
 
     return (
         <>
             <h1>
-                TodoApp: 10, <small>pendientes: 2</small>
+                TodoApp: {howManyTodo},{" "}
+                <small>pendientes: {howManyTodoPending}</small>
             </h1>
             <hr />
             <div className="row">
@@ -59,6 +25,8 @@ function TodoApp() {
                     <TodoList
                         todos={todos}
                         handleDeleteTodo={handleDeleteTodo}
+                        handleToggleTodo={handleToggleTodo}
+                        handleUpdatedTodo={handleUpdatedTodo}
                     />
                 </div>
                 <div className="col-5">

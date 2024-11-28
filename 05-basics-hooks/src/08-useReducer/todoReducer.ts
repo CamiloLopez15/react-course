@@ -7,6 +7,7 @@ export interface Todo {
 export enum ActionType {
     add = "[TODO] Add Todo",
     delete = "[TODO] Delete Todo",
+    put = "[TODO] Updated Todo",
 }
 
 interface Action {
@@ -25,6 +26,13 @@ export const todoReducer = (
             return initialState.filter(
                 (todo) => todo.id !== (payload as Todo).id
             );
+        case ActionType.put:
+            return initialState.map((todo) => {
+                if (todo.id === (payload as Todo).id) {
+                    return payload as Todo;
+                }
+                return todo;
+            });
         default:
             return initialState;
     }
