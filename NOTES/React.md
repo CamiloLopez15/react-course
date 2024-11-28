@@ -20,7 +20,7 @@ _Hooks_ son una nueva característica en React 16.8. Estos te permiten usar el e
 
 -   **State:** El valor del estado en ese momento.
 -   **SetState:** Función para actualizar el estado, le podemos mandar simplemente el valor o una función dentro de esta que retorne un valor. Debe ser pura, debe tomar el estado pendiente como único argumento y debe devolver el siguiente estado.
--   **InitialState:** Estado inicial, puede ser un valor directamente o una función que retorne un valor. Cabe recalcar que este valor será ignorado después del primer renderizado. En caso tal que mande una función debe ser pura, o sea, sin argumentos.
+-   **InitialState:** Estado inicial, puede ser un valor directamente o una función que retorne un valor. Cabe recalcar que este valor será ignorado después del primer renderizado. En caso tal que mande una función debe ser pura y sin argumentos.
 
 ### Advertencias
 
@@ -29,7 +29,7 @@ _Hooks_ son una nueva característica en React 16.8. Estos te permiten usar el e
 
 ### Tips
 
--   Por convención, es común nombrar el argumento de estado pendiente como la primera letra del nombre de la variable de estado, como a para age. No obstante, también puedes llamarlo como prevAge o cualquier otra cosa que te resulte más clara.
+-   Por convención, es común nombrar el argumento de estado pendiente como la primera letra del nombre de la variable de estado, como _a_ para _age_. No obstante, también puedes llamarlo como prevAge o cualquier otra cosa que te resulte más clara.
 
 ## useEffect
 
@@ -40,8 +40,7 @@ Según la documentación de [_React_](https://es.react.dev/reference/react/useEf
 
 `useEffect(callback, [...dependencies])`
 
--   **Callback**: El callback es la función que sería ejecutada cuando se desee ejecutar el efecto. Esta función puede retornar otra función la cual será la encargada de limpiar cualquier interacción que haya en caso tal que sea necesario. Esta se ejecutará cuando el componente sea desmontado, por ejemplo, si nos conectamos a una base de datos, en el return del callback vamos a desconectarnos de dicha base de datos.
-    -   Ahora bien, dentro del callback, podemos retornar una función la cual es llamada clean up, usaremos esta cuando queramos limpiar alguna suscripción, escucha o lo que deseemos. Funcionaría similar al onMounted, o sea, cuando se desarme el componente se ejecutaría dicha función.
+-   **Callback**: El callback es la función que sería ejecutada cuando se desee ejecutar el efecto. Esta función puede retornar otra función la cual será la encargada de limpiar cualquier interacción que haya en caso tal que sea necesario. Esta se ejecutará cuando el componente sea desmontado, por ejemplo, si nos conectamos a una base de datos, en el return del callback vamos a desconectarnos de dicha base de datos, a esto se le llama función clean up. Funcionaría similar al onMounted, o sea, cuando se desarme el componente se ejecutaría dicha función.
 -   **Dependencies**: Son los valores que se tomarán en cuenta para ejecutar el efecto secundario, estas dependencias pueden ser estados, props, etc.
 
 ### Tips
@@ -77,7 +76,6 @@ _useLayoutEffect_ es una versión de useEffect que se acciona antes que el naveg
 `useLayoutEffect(setup, dependencies)`
 
 -   **Callback**: El callback es la función que sería ejecutada cuando se desee ejecutar el efecto. Esta función puede retornar otra función la cual será la encargada de limpiar cualquier interacción que haya en caso tal que sea necesario. Esta se ejecutará cuando el componente sea desmontado, por ejemplo, si nos conectamos a una base de datos, en el return del callback vamos a desconectarnos de dicha base de datos.
-    -   Ahora bien, dentro del callback, podemos retornar una función la cual es llamada clean up, usaremos esta cuando queramos limpiar alguna suscripción, escucha o lo que deseemos. Funcionaría similar al onMounted, o sea, cuando se desarme el componente se ejecutaría dicha función.
 -   **Dependencies**: Son los valores que se tomarán en cuenta para ejecutar el efecto secundario, estas dependencias pueden ser estados, props, etc.
 
 ### Tips
@@ -87,7 +85,7 @@ _useLayoutEffect_ es una versión de useEffect que se acciona antes que el naveg
 
 ## memo
 
-Se utiliza para memorizar componente y evitar su constante renderizado, esto se aplica cuando un componente padre cambia un estado pero aunque este estado no afecte al componente hijo este será actualizado, por ende, si tenemos un componente que hace procesos pesados sería buena idea usar render.
+Se utiliza para memorizar componente y evitar su constante renderizado, esto se aplica cuando un componente padre cambia un estado pero aunque este estado no afecte al componente hijo este será actualizado, por ende, si tenemos un componente que hace procesos pesados sería buena idea usar memo.
 
 ### ¿Como usarlo?
 
@@ -125,9 +123,9 @@ _useCallback_ es un Hook de React que te permite almacenar la definición de una
 
 `const memoizedFunction = useCallback(functionToMemoize, [dependencies])`
 
-**memoizedFunction**: Función memorizada, llamaremos a esta variable y la llamaremos como una función para acceder a la función memorizada.
-**functionToMemoize**: Acá definiremos la función que deseemos memorizar, esta función puede recibir parámetros y devolver cualquier cosa. _React_ devolverá (¡no llamará!) tu función durante el renderizado inicial. Esta función no cambiará hasta que algunas de las dependencias cambien.
-**dependencies**: Es lo que se tendrá en cuenta para volver a definir la función y tenga los valores actualizado. Funcionan iguales que en _useEffect_, _useMemo_ y similares.
+-   **memoizedFunction**: Función memorizada, llamaremos a esta variable y la llamaremos como una función para acceder a la función memorizada.
+-   **functionToMemoize**: Acá definiremos la función que deseemos memorizar, esta función puede recibir parámetros y devolver cualquier cosa. _React_ devolverá (¡no llamará!) tu función durante el renderizado inicial. Esta función no cambiará hasta que algunas de las dependencias cambien.
+-   **dependencies**: Es lo que se tendrá en cuenta para volver a definir la función y tenga los valores actualizado. Funcionan iguales que en _useEffect_, _useMemo_ y similares.
 
 ## Reducer
 
