@@ -24,7 +24,7 @@ createRoot(document.getElementById("root")!).render(
 
 ## Definir rutas
 
-Para definir rutas primero debemos englobar la parte de la aplicación que deseamos que varíe o cambie según la ruta en la que estemos en un componente llamado Routes y luego las rutas individuales las llamaremos Route, estos tendrán una serie de atributos, un ejemplo de esto es:
+Para definir rutas primero debemos englobar la parte de la aplicación que deseamos que varíe o cambie según la ruta en la que estemos en un componente llamado Routes y luego las rutas individuales las llamaremos _Route_, estos tendrán una serie de atributos, un ejemplo de esto es:
 
 ```tsx
 <Routes>
@@ -34,5 +34,30 @@ Para definir rutas primero debemos englobar la parte de la aplicación que desea
 
     <Route path="/*" element={<Navigate to="/about" />} />
     <Route path="/*" element={<LoginPage />} />
+</Routes>
+```
+
+### Routes
+
+Routes es un elemento de React utilizado para englobar todas las rutas de nuestra aplicación.
+
+#### ¿Como usarlo?
+
+```tsx
+<Routes>// Todas nuestras rutas</Routes>
+```
+
+### Route
+
+Route es un elemento usado para definir una ruta en React. Cuanta con varios Props, algunos de estos son:
+
+-   **Path:**: Es la ruta de a la cual se debe navegar para que se renderice el componente.
+-   **Element**: Es el componente que se renderizará cuando se esté en la ruta estipulada en el _path_
+
+#### ¿Como usarlo?
+
+```tsx
+<Routes>
+    <Route path="/" element={<HomePage />} />
 </Routes>
 ```
