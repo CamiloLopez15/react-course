@@ -61,3 +61,40 @@ Route es un elemento usado para definir una ruta en React. Cuanta con varios Pro
     <Route path="/" element={<HomePage />} />
 </Routes>
 ```
+
+## Link
+
+Los elementos Links los usaremos para enviar a otras secciones de nuestra web al usuario, funcionaría similar a una etiqueta _a_ solo que el _Link_ no hace un full refresh. Este tiene unas props, algunas son:
+
+-   _To_: Su funcionalidad es definir la ruta se llevará al usuario.
+
+### ¿Como usarlo?
+
+```tsx
+<Link to="/">Home</Link>
+```
+
+### Tips
+
+Cuando llamamos a un _Link_ este termina renderizando una etiqueta _a_, o sea, si deseamos estilizar un _Link_ debes usar la etiqueta _a_.
+
+## NavLink
+
+_NavLink_ lo utilizamos cuando deseamos saber si la ruta en la que estamos corresponde al link estipulado en el _NavLink_, esto lo usamos en caso tal que queramos aplicar algún estilo en específico. Para hacer eso realizamos lo siguiente...
+
+### ¿Como usarlo?
+
+```tsx
+<NavLink
+    to="/"
+    className={({ isActive, isPending, isTransitioning }) =>
+        `nav-link ${isActive ? "active" : ""}`
+    }
+>
+    Home
+</NavLink>
+```
+
+-   **isActive**: Indica si la ruta en la que estamos concuerda con el _to_ de componente
+-   **isPending**: Indica si la ubicación pendiente coincide con la URL del enlace.
+-   **isTransitioning**: Indica si se está realizando una transición de vista a la URL del enlace. (ViewTransition)
