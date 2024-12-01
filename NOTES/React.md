@@ -169,7 +169,7 @@ Lo utilizamos para crear un contexto el cual nos permitirá acceder valores desd
 
 `const SomeContext = createContext(defaultValue)`
 
--   **defaultValue**: Es el valor por defecto que tendrá el contexto, o sea, en caso tal que no haya un valor se tomará dicho valor por defecto para que el contexto pueda devolver algo o si no existe un contexto devolverá dicho valor. Dicho valor por defecto debe ser estático y no cambiar con el tiempo. Si no tiene ningún valor predeterminado significativo, especifica _null_.
+-   **defaultValue**: Es el valor por defecto que tendrá el contexto, o sea, en caso tal que no haya un valor se tomará dicho valor por defecto para que el contexto pueda devolver algo, o sea, si no existe un proveedor de contexto devolverá dicho valor. Dicho valor por defecto debe ser estático y no cambiar con el tiempo. Si no tiene ningún valor predeterminado significativo, especifica _null_.
 -   **SomeContext**: Cuando creemos un contexto este nos devolverá un objeto con dos propiedades. Estas son:
 
     -   **SomeContext.Provider**: Te permite proporcionar el valor de contexto a los componentes. Esto se hace envolviendo dichos componentes en este para que puedan acceder a su valor.
@@ -199,6 +199,24 @@ Lo utilizamos para crear un contexto el cual nos permitirá acceder valores desd
             );
         }
         ```
+
+## useContext
+
+Es un _hook_ que te permite leer y suscribirte a un contexto desde cualquier componente, mientras este esté englobado por el contexto.
+
+### ¿Como usarlo?
+
+`const value = useContext(SomeContext)`
+
+-   **value**: El valor del contexto actualizado. Este _value_ esta determinado por el _value_ pasado a _SomeContext.Provider_ más cercano, eso es en caso tal que exista, sino existe, devuelve el valor por defecto definido en el _createContext_. Este valor siempre está actualizado y se vuelve a renderizar el componente en caso de que este cambie.
+-   **someContext**: El contexto creado con _createContext_. El propio contexto no guarda información, solo representa el tipo de información que puedes proporcionar o leer desde tus componentes.
+-
+
+### Tips
+
+-   React re-renderiza automáticamente todos los hijos que usen un contexto particular empezando desde el proveedor que recibe un value diferente. Los valores anteriores y los siguientes son comparados con Object.is. Saltarse el re-renderizado con memo no evita que los hijos reciban valores de contexto frescos de arriba.
+-   _useContext()_ siempre busca al proveedor más cercano arriba del componente que lo llama. Busca hacia arriba y no toma en cuenta a los proveedores en el componente desde el cual estás llamando _useContext()_.
+-   Si deseas actualizar el valor de contexto con el tiempo, lo podrás hacer definiendo el valor del contexto con un estado de react o un reducer, permitiéndonos que el contexto sea dinámico.
 
 ## Añadidos y referencias
 
