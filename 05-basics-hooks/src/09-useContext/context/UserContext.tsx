@@ -1,3 +1,17 @@
 import { createContext } from "react";
 
-export const UserContext = createContext({});
+interface UserContext {
+    user: {
+        id: number;
+        name: string;
+        email: string;
+    };
+}
+
+export const UserContext = createContext<UserContext>({
+    user: {
+        id: 0,
+        name: "",
+        email: "",
+    },
+});
