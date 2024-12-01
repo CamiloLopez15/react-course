@@ -161,6 +161,45 @@ El _useReducer_ es un hook que nos permite definir un reducer, es comúnmente us
 -   **InitialArg**: Es el valor inicial del estado.
 -   **Init**: Es la función inicializadora que se ejecutará en caso tal que quieras definir el estado inicial a partir de lo que devuelva dicha función. Me explico, imagina que el _InitialArg_ tienes un id, pero deseas que el estado inicial sea un _username_, por ende, necesitas pasar dicho _id_ a una función, para ello se recomienda usar el parámetro _init_ en el cual pasarás la función directamente y se definirá como estado inicial lo que devuelva esa función. ¿Por qué no pasar como _initialArg_ la función directamente con el _id_ como parámetro? Porque si hacemos eso, la función se llamaría siempre que se actualice el estado, lo cual, termina siendo menos optimo que pasarla como _init_ que evita este comportamiento.
 
+## createContext
+
+Lo utilizamos para crear un contexto el cual nos permitirá acceder valores desde hijos de dicho contexto, los componentes podrán leer este o proporcionarlo. Este contexto funciona como un estado global, o sea, nos permitirá actualizar los componentes si el estado cambian, provocando que sea dinámico, como un _useState_.
+
+### ¿ Como usarlo?
+
+`const SomeContext = createContext(defaultValue)`
+
+-   **defaultValue**: Es el valor por defecto que tendrá el contexto, o sea, en caso tal que no haya un valor se tomará dicho valor por defecto para que el contexto pueda devolver algo o si no existe un contexto devolverá dicho valor. Dicho valor por defecto debe ser estático y no cambiar con el tiempo. Si no tiene ningún valor predeterminado significativo, especifica _null_.
+-   **SomeContext**: Cuando creemos un contexto este nos devolverá un objeto con dos propiedades. Estas son:
+
+    -   **SomeContext.Provider**: Te permite proporcionar el valor de contexto a los componentes. Esto se hace envolviendo dichos componentes en este para que puedan acceder a su valor.
+        Esto recibe una prop, dicha prop es _value_, esta será el valor que tendrá el contexto y por ende, los componentes que lean a esta obtendrán dicho valor. Esto ocurre sin importar lo profundo que esté el componente.
+        Un componente que llama a useContext(SomeContext) dentro del proveedor recibe el valor (value) del proveedor de contexto más cercano que tenga.
+
+        ```tsx
+        function App() {
+            const [theme, setTheme] = useState("light");
+            return (
+                <ThemeContext.Provider value={theme}>
+                    <Page />
+                </ThemeContext.Provider>
+            );
+        }
+        ```
+
+    -   **SomeContext.Consumer**: Es una forma alternativa y poco utilizada de leer el valor del contexto. Esto es debido a que se creó antes de que existiera el _useContext_, por ende, se recomienda usar el _useContext_ en vez de _SomeContext.Consumer_.
+        El recibe como prop un _children_ esto es una función. React llamará a la función que pases con el valor de contexto actual determinado por el mismo algoritmo que useContext() y renderizará el resultado que devuelves de esta función. React también volverá a ejecutar esta función y actualizará la interfaz de usuario siempre que el contexto pasado desde los componentes principales haya cambiado.
+        ```tsx
+        function Button() {
+            // 🟡 Forma antigua (no recomendado)
+            return (
+                <ThemeContext.Consumer>
+                    {(theme) => <button className={theme} />}
+                </ThemeContext.Consumer>
+            );
+        }
+        ```
+
 ## Añadidos y referencias
 
 Página de _React_ [AQUÍ](https://es.react.dev/)
