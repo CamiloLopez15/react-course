@@ -8,6 +8,7 @@ export enum ActionType {
     add = "[TODO] Add Todo",
     delete = "[TODO] Delete Todo",
     put = "[TODO] Updated Todo",
+    none = "",
 }
 
 interface Action {
