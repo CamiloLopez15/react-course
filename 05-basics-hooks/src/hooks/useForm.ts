@@ -5,7 +5,7 @@ export const useForm = <T>(initialForm: T) => {
 
     const onChangeInput = ({ target }: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = target;
-        setFormState({ ...formState, [name]: value });
+        setFormState((current) => ({ ...current, [name]: value }));
     };
 
     const onResetForm = () => setFormState(initialForm);
