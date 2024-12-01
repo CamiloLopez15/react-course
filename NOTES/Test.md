@@ -91,3 +91,7 @@ Los utilizamos para renderizar un hook y hacer pruebas de este, esto simula una 
 #### Screen
 
 Screen es un método que importamos de la librería, este nos dará la información de lo que renderizemos, nos dará el body del HTML que se renderiza al ejecutar el método Render. Este tendrá los mismos métodos que el render y con algunos añadidos, pero no contará con el `container`.
+
+### Act
+
+Es usado cuando deseamos validar un hook que dispara la actualización de un estado.

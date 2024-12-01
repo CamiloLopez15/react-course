@@ -1,8 +1,11 @@
-import { renderHook } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
 import { useCounter } from "../../src/hooks";
+
 describe("Pruebas en el hook useCounter", () => {
-    // const valueIncrementParam = 1;
     const initialValue = 100;
+    const valueIncrementParam = 80;
+    const valueDecrementParam = 50;
+
     test("Debe de retornar los valores por defecto", () => {
         const { result } = renderHook(() => useCounter());
         const { counter, reset, decrement, increment } = result.current;
@@ -20,12 +23,40 @@ describe("Pruebas en el hook useCounter", () => {
         expect(counter).toBe(initialValue);
     });
 
-    // test(`Debe incrementar en ${valueIncrementParam}`, () => {
-    //     const { result } = renderHook(() => useCounter());
-    //     const { counter, reset, decrement, increment } = result.current;
+    test(`Debe incrementar a ${initialValue + valueIncrementParam * 2}`, () => {
+        const { result } = renderHook(() => useCounter(initialValue));
+        const { counter, increment } = result.current;
 
-    //     increment(valueIncrementParam);
+        act(() => {
+            increment(valueIncrementParam);
+            increment(valueIncrementParam);
+        });
 
-    //     expect(counter).toBe(0);
-    // });
+        expect(result.current.counter).toBe(counter + valueIncrementParam * 2);
+    });
+
+    test(`Debe decrementar a ${initialValue - valueDecrementParam * 2}`, () => {
+        const { result } = renderHook(() => useCounter(initialValue));
+        const { counter, decrement } = result.current;
+
+        act(() => {
+            decrement(valueDecrementParam);
+            decrement(valueDecrementParam);
+        });
+
+        expect(result.current.counter).toBe(counter - valueDecrementParam * 2);
+    });
+
+    test(`Debe volver al estado inicial (${initialValue}) al resetear el estado`, () => {
+        const { result } = renderHook(() => useCounter(initialValue));
+        const { reset, decrement, increment } = result.current;
+
+        act(() => {
+            increment(valueIncrementParam);
+            decrement(valueDecrementParam);
+            reset();
+        });
+
+        expect(result.current.counter).toBe(initialValue);
+    });
 });
