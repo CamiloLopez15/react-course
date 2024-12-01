@@ -7,8 +7,5 @@ describe("Pruebas en el componente MultipleCustomHooks", () => {
         expect(screen).toMatchSnapshot();
         expect(screen.getByText("Información de Pokemon")).toBeTruthy();
         expect(screen.getByText("Cargando...")).toBeTruthy();
-
-
-        screen.debug();
     });
 });
