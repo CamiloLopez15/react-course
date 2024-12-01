@@ -1,19 +1,17 @@
 import React from "react";
-import { UserContext } from "./UserContext";
+import { initialUser, User, UserContext } from "./UserContext";
+import { useState } from "react";
 
 interface UserProviderProps {
     children?: React.ReactNode;
 }
 
-const user = {
-    id: 123,
-    name: "Camilo",
-    email: "camilolopez1506@gmail.com",
-};
-
 const UserProvider = ({ children }: UserProviderProps) => {
+    const [user, setUser] = useState<User>(initialUser);
     return (
-        <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
+        <UserContext.Provider value={{ user, setUser }}>
+            {children}
+        </UserContext.Provider>
     );
 };
 
