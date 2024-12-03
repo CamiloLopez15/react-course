@@ -59,18 +59,21 @@ function TodoElement({
                         isEdition ? "btn-primary" : "btn-warning"
                     } text-white`}
                     onClick={handleEdit}
+                    aria-label="btn-edit"
                 >
                     {isEdition ? "Guardar" : "Editar"}
                 </button>
                 <button
                     className="btn btn-info text-white"
                     onClick={() => handleToggleTodo(todo)}
+                    aria-label="btn-change-status"
                 >
                     Actualizar estado
                 </button>
                 <button
                     className="btn btn-danger"
                     onClick={() => handleDeleteTodo(todo)}
+                    aria-label="btn-delete"
                 >
                     Eliminar
                 </button>
