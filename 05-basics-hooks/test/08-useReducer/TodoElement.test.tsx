@@ -22,7 +22,7 @@ describe("Pruebas en el componente TodoItem", () => {
 
     beforeEach(() => jest.clearAllMocks());
 
-    test("Debe de mostrar el Todo Pendiente de completar", () => {
+    test("Debe de mostrar el componente correctamente", () => {
         render(<TodoElement {...TodoElementProps} />);
         expect(screen).toMatchSnapshot();
     });
