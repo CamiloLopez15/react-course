@@ -48,6 +48,7 @@ function TodoElement({
                             ? "text-decoration-line-through font-monospace fst-italic"
                             : ""
                     }`}
+                    aria-label="span"
                 >
                     {descriptionContent}
                 </span>

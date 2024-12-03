@@ -65,7 +65,37 @@ Ahora bien, Jest no es mi útil cuando deseamos validar un componente React y ah
 
 #### Mock función
 
-Un _mock_ de una función es la simulación de una función la cual queramos evaluar. Para ello hacemos lo siguiente
+Un _mock_ de una función es la simulación de una función la cual queramos evaluar. Existen dos tipos de funciones, los _hooks_ y las funciones.
+
+##### Hooks
+
+```ts
+import { useFetch } from "../../src/hooks/useFetch";
+jest.mock("../../src/hooks/useFetch");
+const mockedUseFetch = useFetch as jest.MockedFunction<typeof useFetch>;
+
+mockedUseFetch.mockReturnValue({
+    data: null,
+    isLoading: true,
+    hasError: false,
+});
+```
+
+Lo primero que vamos a hacer es importa el _hook_ que deseamos hacerle _mock_. Una vez hecho eso haremos lo siguiente:
+
+-   Tomaremos la ruta en la cual se encuentra alojado el _hook_, y se la pasaremos como parámetro al método de `jest.mock(rutaDelHook)`.
+-   En caso de que usemos TypeScript, le deberíamos decir que ahora el _hook_ le hemos hecho un _mock_, por ende, le debemos castear el tipo y se lo asignamos a una nueva variable.
+-   Con este tendremos ya la función con un _mock_ y tipificada, gracias a esto podremos acceder fácilmente a todos los tipos. En este caso le definimos lo valores que va a retornar dicho _hook_.
+
+##### Funciones
+
+```ts
+const functionMock = jest.fn();
+```
+
+En el caso de las funciones es más fácil de hacer el _mock_:
+
+-   Creamos una variables y le asignamos `jest.fn()`, esto realizará el _mock_ de la función.
 
 ### React Testing Library
 
