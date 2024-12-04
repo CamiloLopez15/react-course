@@ -13,8 +13,7 @@ const MainApp = () => {
                 <Route path="login" element={<LoginPage />} />
                 <Route path="about" element={<AboutPage />} />
 
-                <Route path="/*" element={<Navigate to="/about" />} />
-                <Route path="/*" element={<LoginPage />} />
+                <Route path="/*" element={<Navigate to="/" />} />
             </Routes>
         </UserProvider>
     );
