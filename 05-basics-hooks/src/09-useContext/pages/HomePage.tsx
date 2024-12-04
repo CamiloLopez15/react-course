@@ -7,7 +7,7 @@ function HomePage() {
         <>
             <h2>HomePage</h2>
             <hr />
-            <pre>{JSON.stringify(user, null, 4)}</pre>
+            <pre aria-label="preElement">{JSON.stringify(user, null, 4)}</pre>
         </>
     );
 }
