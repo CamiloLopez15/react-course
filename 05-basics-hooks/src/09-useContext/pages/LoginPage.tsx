@@ -13,7 +13,7 @@ function LoginPage() {
         <>
             <h2>LoginPage</h2>
             <hr />
-            <pre>{JSON.stringify(user, null, 4)}</pre>
+            <pre aria-label="pre">{JSON.stringify(user, null, 4)}</pre>
             <button
                 className="btn btn-primary"
                 onClick={() => setUser(newUser)}
