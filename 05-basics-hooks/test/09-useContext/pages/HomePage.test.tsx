@@ -1,6 +1,6 @@
-import { User, UserContext } from "../../src/09-useContext/context/UserContext";
+import { User, UserContext } from "./../../../src/09-useContext/context/UserContext";
 import { render, screen } from "@testing-library/react";
-import { HomePage } from "../../src/09-useContext/pages";
+import { HomePage } from "./../../../src/09-useContext/pages";
 
 describe("Pruebas en el componente HomePage", () => {
     const initialUser: User = {
