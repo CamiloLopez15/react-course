@@ -1,5 +1,10 @@
+import { AppRouter } from "./router/AppRouter";
 function HeroApp() {
-    return <section>HeroApp</section>;
+    return (
+        <main>
+            <AppRouter />
+        </main>
+    );
 }
 
 export default HeroApp;
