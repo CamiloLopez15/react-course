@@ -9,7 +9,7 @@ const setActiveClass = ({ isActive }: NavLinkRenderProps): string =>
     `nav-item nav-link ${isActive ? "active" : ""}`;
 
 export const Navbar = () => {
-    const pages = ["Marvel", "DC", "Search", "Hero"];
+    const pages = ["Marvel", "DC", "Search"];
 
     const navigate = useNavigate();
 
