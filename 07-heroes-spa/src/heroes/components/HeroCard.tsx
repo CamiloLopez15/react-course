@@ -6,13 +6,13 @@ interface HeroCardProps {
 
 function HeroCard({ hero }: HeroCardProps) {
     const { superhero } = hero;
-    const heroImageUrl = ``;
+    const heroImageUrl = `/assets/heroes/`;
     return (
         <div className="col">
             <div className="card">
                 <div className="row no-gutters">
                     <div className="col-4">
-                        <img src={heroImageUrl} alt={superhero} />
+                        <img className="card-img" src={heroImageUrl} alt={superhero} />
                     </div>
                 </div>
             </div>
