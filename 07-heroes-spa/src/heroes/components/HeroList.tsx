@@ -8,7 +8,7 @@ interface HeroListProps {
 export const HeroList = ({ publisher }: HeroListProps) => {
     const heroes = getHeroesByPublisher(publisher);
     return (
-        <ul>
+        <ul className="row rows-cols-1 row-cols-md-3 g-3">
             {heroes.map((hero) => (
                 <HeroCard hero={hero} key={hero.id} />
             ))}
