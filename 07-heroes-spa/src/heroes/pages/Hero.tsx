@@ -1,8 +1,15 @@
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
+import { getHeroById } from "../helpers";
 
 export const Hero = () => {
-    const { heroId } = useParams();
-    console.log(heroId);
+    const { id } = useParams();
 
-    return <h1>Hero</h1>;
+    const hero = getHeroById(id as string);
+    if (!hero) return <Navigate to={"/marvel"} />;
+
+    const { superhero } = hero;
+
+    console.log(hero);
+
+    return <h1>{superhero}</h1>;
 };
