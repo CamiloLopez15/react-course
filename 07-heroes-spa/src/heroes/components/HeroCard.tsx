@@ -18,13 +18,13 @@ function HeroCard({ hero }: HeroCardProps) {
     }, [alter_ego, characters]);
 
     return (
-        <div className="col">
+        <div className="col animate__animated animate__fadeIn">
             <div className="card">
                 <div className="row no-gutters">
                     <div className="col-4">
                         <img
                             className="card-img"
-                            src={heroImageUrl}
+                            src={   heroImageUrl}
                             alt={superhero}
                         />
                     </div>
