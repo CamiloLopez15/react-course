@@ -24,7 +24,7 @@ function HeroCard({ hero }: HeroCardProps) {
                     <div className="col-4">
                         <img
                             className="card-img"
-                            src={   heroImageUrl}
+                            src={heroImageUrl}
                             alt={superhero}
                         />
                     </div>
@@ -53,4 +53,4 @@ function HeroCard({ hero }: HeroCardProps) {
     );
 }
 
-export default HeroCard;
+export { HeroCard };
