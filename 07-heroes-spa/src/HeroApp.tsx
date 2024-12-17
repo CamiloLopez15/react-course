@@ -1,9 +1,10 @@
+import { AuthProvider } from "./auth";
 import { AppRouter } from "./router/AppRouter";
 function HeroApp() {
     return (
-        <main>
+        <AuthProvider>
             <AppRouter />
-        </main>
+        </AuthProvider>
     );
 }
 
