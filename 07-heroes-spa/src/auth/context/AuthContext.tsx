@@ -1,13 +1,13 @@
-import { ActionAuthReducer, User } from "../types";
-import { createContext, Dispatch } from "react";
+import { createContext } from "react";
 import { initialState } from "../data/user";
+import { User } from "../types";
 
 interface AuthContext {
     authState: User;
-    dispatchAuth: Dispatch<ActionAuthReducer>;
+    login: (name: string) => void;
 }
 
 export const AuthContext = createContext<AuthContext>({
     authState: initialState,
-    dispatchAuth: () => {},
+    login: () => {},
 });

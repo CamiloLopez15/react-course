@@ -9,8 +9,8 @@ export const authReducer = (
         case Types.login:
             return {
                 ...state,
+                ...(action.payload as User),
                 logged: true,
-                username: action.payload as string,
             };
 
         case Types.logout:

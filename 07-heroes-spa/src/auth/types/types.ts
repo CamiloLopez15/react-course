@@ -5,10 +5,11 @@ export enum Types {
 
 export interface User {
     logged: boolean;
+    id: string;
     username: string;
 }
 
 export interface ActionAuthReducer {
     type: Types;
-    payload: User | string;
+    payload: Partial<User>;
 }

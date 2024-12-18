@@ -1,15 +1,20 @@
 import {
-    Link,
-    NavLink,
     NavLinkRenderProps,
     useNavigate,
+    NavLink,
+    Link,
 } from "react-router-dom";
+import { AuthContext } from "@src/auth";
+import { useContext } from "react";
 
 const setActiveClass = ({ isActive }: NavLinkRenderProps): string =>
     `nav-item nav-link ${isActive ? "active" : ""}`;
 
 export const Navbar = () => {
     const pages = ["Marvel", "DC", "Search"];
+    const {
+        authState: { username },
+    } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -41,7 +46,9 @@ export const Navbar = () => {
 
             <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
                 <ul className="navbar-nav ml-auto">
-                    <span className="nav-item nav-link text-info">Camilo</span>
+                    <span className="nav-item nav-link text-info">
+                        {username}
+                    </span>
                     <button
                         className="nav-item nav-link btn"
                         onClick={handleLogout}
