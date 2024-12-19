@@ -98,3 +98,50 @@ _NavLink_ lo utilizamos cuando deseamos saber si la ruta en la que estamos corre
 -   **isActive**: Indica si la ruta en la que estamos concuerda con el _to_ de componente
 -   **isPending**: Indica si la ubicación pendiente coincide con la URL del enlace.
 -   **isTransitioning**: Indica si se está realizando una transición de vista a la URL del enlace. (ViewTransition)
+
+## Rutas privadas
+
+Para crear rutas privadas lo primero que debemos hacer es crear un nuevo componente el cual tendrá las validaciones pertinentes para determinar si el usuario puede acceder o no.
+
+Eso lo logramos creando un nuevo componente que reciba como _children_ las rutas las cuales estarán protegidas. Luego el componente renderizará la aplicación solamente si el usuario cumple con determinada validación, en caso tal que no la cumpla lo navegará al login o a donde prefiera el programador.
+
+#### Ejemplo del componente...
+
+```tsx
+interface PrivateRouteProps {
+    children: ReactNode;
+}
+
+function PrivateRoute({ children }: PrivateRouteProps) {
+
+    // ...your code
+
+    if (validation) {
+        return children;
+    } else {
+        return <Navigate to={"/login"} replace />;
+    }
+}
+```
+
+#### Utilizando o renderizando el componente
+
+```tsx
+export const AppRouter = () => {
+    return (
+        <>
+            <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route
+                    path="/*"
+                    element={
+                        <PrivateRoute>
+                            <RutasPrivadas /> {/*Rutas que quieras que sean privadas*/}
+                        </PrivateRoute>
+                    }
+                ></Route>
+            </Routes>
+        </>
+    );
+};
+```
