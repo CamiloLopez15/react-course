@@ -44,8 +44,7 @@ function AuthProvider({ children }: AuthProvider) {
             payload: newUser,
         };
 
-        setItem(Object.assign(authState, actions, { logged: true }));
-
+        setItem(Object.assign(authState, actions.payload, { logged: true }));
         dispatchAuth(actions);
     };
 
