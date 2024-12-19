@@ -44,13 +44,21 @@ function AuthProvider({ children }: AuthProvider) {
             payload: newUser,
         };
 
-        setItem(Object.assign(authState, actions));
+        setItem(Object.assign(authState, actions, { logged: true }));
 
         dispatchAuth(actions);
     };
 
+    const logout = () => {
+        localStorage.removeItem("user");
+        dispatchAuth({
+            type: Types.logout,
+            payload: {},
+        });
+    };
+
     return (
-        <AuthContext.Provider value={{ authState, login }}>
+        <AuthContext.Provider value={{ authState, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

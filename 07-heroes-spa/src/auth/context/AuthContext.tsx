@@ -5,9 +5,11 @@ import { User } from "../types";
 interface AuthContext {
     authState: User;
     login: (name: string) => void;
+    logout: () => void;
 }
 
 export const AuthContext = createContext<AuthContext>({
     authState: initialState,
     login: () => {},
+    logout: () => {},
 });

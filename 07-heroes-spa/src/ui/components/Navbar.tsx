@@ -14,6 +14,7 @@ export const Navbar = () => {
     const pages = ["Marvel", "DC", "Search"];
     const {
         authState: { username },
+        logout,
     } = useContext(AuthContext);
 
     const navigate = useNavigate();
@@ -22,6 +23,7 @@ export const Navbar = () => {
         navigate("/login", {
             replace: true,
         });
+        logout();
     };
 
     return (
