@@ -43,8 +43,8 @@ export const Hero = () => {
             <div className="col-8">
                 <h3>{superhero}</h3>
                 <ul className="list-group list-group-flush">
-                    {groupLists.map(({ label, value }) => (
-                        <li className="list-group-item">
+                    {groupLists.map(({ label, value }, i) => (
+                        <li className="list-group-item" key={i}>
                             <b>{label}:</b> {value}
                         </li>
                     ))}

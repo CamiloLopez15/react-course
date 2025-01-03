@@ -11,7 +11,9 @@ function PublicRoute({ children }: PublicRouteProps) {
         authState: { logged },
     } = useContext(AuthContext);
 
-    if (logged) return <Navigate to="/home" replace />;
+    const lastPath = localStorage.getItem("lastPath") || "/";
+
+    if (logged) return <Navigate to={lastPath} replace />;
     else return children;
 }
 
