@@ -4,7 +4,7 @@
 
 # ¿Como funciona el renderizado en `React`?
 
-Cada vez que es actualizado el estado, una dependencia del useEffect o similar y se dispare el renderizado de nuevo de la app `React` todo el código que está dentro de la aplicación de `React` de volverá a ejecutar, o sea, asignará en memoria de nuevo las variables, funciones, etc. Por este motivo se recomiendo que si deseas crear una función, variable o similar que no tenga que ver con una característica `React` lo defina fuera de la función de React.
+Cada vez que es actualizado el estado, una dependencia del useEffect o similar y se dispare el renderizado de nuevo de la app `React` todo el código que está dentro de la aplicación de `React` de volverá a ejecutar, o sea, asignará en memoria de nuevo las variables, funciones, etc. Por este motivo se recomienda que si deseas crear una función, variable o similar que no tenga que ver con una característica `React` lo defina fuera de la función de React.
 
 # Hooks
 
@@ -210,7 +210,6 @@ Es un _hook_ que te permite leer y suscribirte a un contexto desde cualquier com
 
 -   **value**: El valor del contexto actualizado. Este _value_ esta determinado por el _value_ pasado a _SomeContext.Provider_ más cercano, eso es en caso tal que exista, sino existe, devuelve el valor por defecto definido en el _createContext_. Este valor siempre está actualizado y se vuelve a renderizar el componente en caso de que este cambie.
 -   **someContext**: El contexto creado con _createContext_. El propio contexto no guarda información, solo representa el tipo de información que puedes proporcionar o leer desde tus componentes.
--
 
 ### Tips
 
