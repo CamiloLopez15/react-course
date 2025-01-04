@@ -1,6 +1,7 @@
 export enum Types {
     login = "[Auth] Login",
     logout = "[Auth] Logout",
+    test = "[Test] Prueba"
 }
 
 export interface User {
