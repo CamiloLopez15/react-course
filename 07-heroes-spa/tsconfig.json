@@ -5,8 +5,11 @@
         { "path": "./tsconfig.node.json" }
     ],
     "compilerOptions": {
-        // Otras configuraciones
         "esModuleInterop": true,
-        "jsx": "react-jsx"
+        "jsx": "react-jsx",
+        "baseUrl": ".",
+        "paths": {
+            "@src/*": ["src/*"]
+        }
     }
 }

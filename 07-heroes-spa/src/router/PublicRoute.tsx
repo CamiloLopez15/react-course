@@ -1,4 +1,4 @@
-import { AuthContext } from "@src/auth";
+import { AuthContext } from "./../auth/context/AuthContext";
 import { ReactNode, useContext } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -11,7 +11,7 @@ function PublicRoute({ children }: PublicRouteProps) {
         authState: { logged },
     } = useContext(AuthContext);
 
-    const lastPath = localStorage.getItem("lastPath") || "/";
+    const lastPath = localStorage.getItem("lastPath") || "/marvel";
 
     if (logged) return <Navigate to={lastPath} replace />;
     else return children;
