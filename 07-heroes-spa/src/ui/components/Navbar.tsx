@@ -4,7 +4,7 @@ import {
     NavLink,
     Link,
 } from "react-router-dom";
-import { AuthContext } from "@src/auth";
+import { AuthContext } from "./../../auth";
 import { useContext } from "react";
 
 const setActiveClass = ({ isActive }: NavLinkRenderProps): string =>
