@@ -1,5 +1,11 @@
+import AppRouter from "./router/AppRouter";
+
 function JournalApp() {
-    return <div>Hola mundo</div>;
+    return (
+        <>
+            <AppRouter />
+        </>
+    );
 }
 
 export default JournalApp;
