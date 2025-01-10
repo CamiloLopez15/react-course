@@ -1,9 +1,12 @@
 import AppRouter from "./router/AppRouter";
+import AppTheme from "./theme/AppTheme";
 
 function JournalApp() {
     return (
         <>
-            <AppRouter />
+            <AppTheme>
+                <AppRouter />
+            </AppTheme>
         </>
     );
 }
