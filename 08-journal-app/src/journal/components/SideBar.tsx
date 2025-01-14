@@ -55,14 +55,6 @@ function Sidebar({ drawerWidth }: SideBarProps) {
                         "Febrero",
                         "Marzo",
                         "Abril",
-                        "Mayo",
-                        "Junio",
-                        "Julio",
-                        "Agosto",
-                        "Septiembre",
-                        "Octubre",
-                        "Noviembre",
-                        "Diciembre",
                     ].map((item) => (
                         <ListItem key={item} disablePadding>
                             <ListItemButton>
