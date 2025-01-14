@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Box } from "@mui/material";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavBar";
+import Sidebar from "../components/Sidebar";
 
 interface JournalLayoutLayout {
     children: ReactNode;
@@ -13,7 +14,7 @@ function JournalLayout({ children }: JournalLayoutLayout) {
         <Box sx={{ display: "flex" }}>
             <Navbar drawerWidth={drawerWidth} />
 
-            {/* Sidebar */}
+            <Sidebar drawerWidth={drawerWidth} />
             <Box component="main" sx={{ flexGrow: 1, padding: 3 }}>
                 {/* Toolbar */}
                 {children}
