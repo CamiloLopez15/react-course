@@ -10,7 +10,7 @@ function NothingSelectedView() {
             alignItems="center"
             justifyContent="center"
             sx={{
-                minHeight: "calc(100vh - 110px)",
+                minHeight: "calc(100vh - 112px)",
                 backgroundColor: "primary.main",
                 borderRadius: 3,
             }}

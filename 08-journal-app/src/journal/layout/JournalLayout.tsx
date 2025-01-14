@@ -15,7 +15,7 @@ function JournalLayout({ children }: JournalLayoutLayout) {
             <Navbar drawerWidth={drawerWidth} />
 
             <Sidebar drawerWidth={drawerWidth} />
-            <Box component="main" sx={{ flexGrow: 1, padding: 3 }}>
+            <Box component="main" sx={{ flexGrow: 1, padding: 3, mt: "64px" }}>
                 {children}
             </Box>
         </Box>
