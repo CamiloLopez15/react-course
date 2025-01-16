@@ -18,7 +18,7 @@ Podemos tener actualizaciones de estados asincronícas.
 -   Para llamar dichas acciones las _Actions_ los _dispatchers_. Estos son los encargados de denominar si la acción es asíncrona o síncrona, dentro de los _dispatchers_ están los _middlewares_ que se encargarán de realizar las funciones asíncronas para poder convertir la acción síncrona y llegue al Reducer.
 -   _Store_ es el estado y los _reducers_, la fuente de la verdad, dentro de está están los _reducers_ y está el _estado_
 
-Por otra parte, hay que tener en cuenta que __Redux toolkit__ trabaja con _Immer_, lo que nos permite mutar el estado directamente desde los _reducer_ sin que haya ningún problema.
+Por otra parte, hay que tener en cuenta que **Redux toolkit** trabaja con _Immer_, lo que nos permite mutar el estado directamente desde los _reducer_ sin que haya ningún problema.
 
 ## Inicialización de Redux
 
@@ -39,12 +39,24 @@ export const store = configureStore({
     reducer: {
         state: stateSlice.reducer,
     },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(middlewarePrueba),
+    devTools: true,
+    preloadedState: {
+        state: "default",
+    },
+    enhancers: (getDefaultEnhancers) =>
+        getDefaultEnhancers().concat(enhancersPrueba),
 });
 ```
 
 La función como primer parámetro acepta un objeto que contiene lo siguiente...
 
 -   _reducer_: es el objeto encargado de asignar los _reducers_ de los slices para poder ser usados.
+-   _middleware_: estos serán los intermediarios entre las acciones despachas y el estado. Recibe un callback que obtiene como parámetro una función que retorna los valores por defecto. En este caso al usar TypeScript y una tupla se asignan auténticamente.
+-   _devTools_: es un valor booleano que es utilizado para activar o desactivar las devTools.
+-   _preloadedState_: es los estados por defecto de todos los _reducers_, por ende, debe ser igual al objeto reducer.
+-   _enhancers_: son utilizados para extender la funcionalidad de store de _Redux_. Recibe un callback que obtiene como parámetro una función que retorna los valores por defecto. En este caso al usar TypeScript y una tupla se asignan auténticamente.
 
 ### Provider
 
