@@ -4,7 +4,8 @@ Redux es una librería que nos permite manejar un estado global. Antes de explic
 
 -   _Redux:_ librería encargada de manejar un estado global mediante reducer.
 -   _React Redux:_ Sería la forma tradicional de trabajar con Redux en aplicaciones de React. Este tiene el problema que hay mucho _boilerplate_, o sea, tenemos que escribir mucho código para que algo funcione. Esto ocurre principalmente si queremos manejar tareas asíncronas.
--   _Redux toolkit:_ Nos permite implementar el patrón Redux en nuestra aplicaciones de React de forma más sencilla
+-   _Redux toolkit:_ Nos permite implementar el patrón Redux en nuestra aplicaciones de React de forma más sencilla.
+-   _Thunk_: Es código que ejecutará una acción asíncrona y cuando termine bien o mal dispara una acción al reducer.
 
 Redux es el patrón de diseño que maneja los estados mediante reducers. Esto provoca que se predecible el comportamiento de los estados.
 Podemos tener actualizaciones de estados asincronícas.
