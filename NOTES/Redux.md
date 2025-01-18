@@ -144,3 +144,36 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "./Store";
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 ```
+
+### RTK Query
+
+_RTK Query_ es una forma que tenemos para realizar fetching de datos en _Redux_, este es un addon que viene por defecto en _Redux_. Se encarga de realizar el _fetching_ de datos y manejar el caché de estos. Sería una alternativa a _React Query_ o similar.
+
+#### ¿Como usarlo?
+
+```ts
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+export const todosApi = createApi({
+    reducerPath: "todosApi",
+    baseQuery: fetchBaseQuery({
+        baseUrl: "https://jsonplaceholder.typicode.com",
+    }),
+    endpoints: (builder) => ({
+        getTodos: builder.query({
+            query: () => "/todos",
+        }),
+    }),
+});
+
+export const { useGetTodosQuery } = todosApi;
+```
+
+- _createApi:_ Es la forma que tenemos para generar la conexión a la API. Esta recibe un grupo de configuraciones la cuales son...
+  - _reducerPath:_ es el nombre de que le asignaremos a la API.
+  - _baseQuery:_ lo usaremos para definir la configuraciones de la query y del _endpoint_.
+  - _endpoint_: Acá están todos los _endpoints_ que usaremos de la API.
+
+Cuando inicializamos la API podemos desestructurar de ella varias propiedades pero entre ella podemos obtener los custom hooks de los _endpoint_.
+
+También, podremos obtener el reducer entre otras muchas propiedades.
