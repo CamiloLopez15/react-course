@@ -4,10 +4,12 @@ import {
     startGoogleSignIn,
 } from "../../store/slices/auth/thunks";
 import { Link as RouterLink } from "react-router";
-import { useAppDispatch } from "../../store/hook";
+import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { useForm } from "../../hooks/useForm";
 import AuthLayout from "../layout/AuthLayout";
 import { Google } from "@mui/icons-material";
+import { UserStatus } from "../types/state";
+import { useMemo } from "react";
 
 interface LoginForm {
     email: string;
@@ -15,7 +17,11 @@ interface LoginForm {
 }
 
 function LoginPage() {
+    const { status } = useAppSelector((state) => state.auth);
     const dispatch = useAppDispatch();
+
+    const isLoading = useMemo(() => status === UserStatus.checking, [status]);
+
     const { email, password, onChangeInput } = useForm<LoginForm>({
         email: "ejemplo@google.com",
         password: "1231231",
@@ -52,6 +58,7 @@ function LoginPage() {
                             name="email"
                             onChange={onChangeInput}
                             value={email}
+                            disabled={isLoading}
                         />
                     </Grid2>
 
@@ -71,6 +78,7 @@ function LoginPage() {
                             name="password"
                             onChange={onChangeInput}
                             value={password}
+                            disabled={isLoading}
                         />
                     </Grid2>
 
@@ -80,7 +88,12 @@ function LoginPage() {
                         sx={{ mb: 2, mt: 1, width: "100%" }}
                     >
                         <Grid2 size={{ xs: 12, sm: 6 }}>
-                            <Button variant="contained" fullWidth type="submit">
+                            <Button
+                                variant="contained"
+                                fullWidth
+                                type="submit"
+                                disabled={isLoading}
+                            >
                                 Login
                             </Button>
                         </Grid2>
@@ -89,6 +102,7 @@ function LoginPage() {
                                 variant="contained"
                                 fullWidth
                                 onClick={onGoogleSignIn}
+                                disabled={isLoading}
                             >
                                 <Google />{" "}
                                 <Typography sx={{ ml: 1 }}>Google</Typography>

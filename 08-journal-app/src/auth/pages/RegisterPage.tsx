@@ -1,11 +1,59 @@
 import { Button, Grid2, Link, TextField, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router";
 import AuthLayout from "../layout/AuthLayout";
+import { FormValidations, useForm } from "../../hooks/useForm";
+import { useState } from "react";
+
+interface RegisterForm {
+    email: string;
+    password: string;
+    displayName: string;
+}
+
+const formValidations: FormValidations<RegisterForm> = {
+    email: [
+        (value: string) => value.includes("@"),
+        "El correo debe de contener @",
+    ],
+    password: [
+        (value: string) => value.length >= 6,
+        "El password debe de contener 6 caracteres",
+    ],
+    displayName: [
+        (value: string) => value.length >= 1,
+        "El nombre es obligatorio",
+    ],
+};
 
 function RegisterPage() {
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const {
+        displayName,
+        email,
+        password,
+        onChangeInput,
+        formValidation: { displayNameInvalid, emailInvalid, passwordInvalid },
+        isFormValid,
+    } = useForm<RegisterForm>(
+        {
+            email: "",
+            password: "",
+            displayName: "",
+        },
+        formValidations
+    );
+
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log("Register");
+        setFormSubmitted(true);
+        console.log({ email, password, displayName });
+    };
+
     return (
         <AuthLayout headerText="Registro">
-            <form>
+            <h1>FormValid {isFormValid ? "True" : "False"}</h1>
+            <form onSubmit={onSubmit}>
                 <Grid2 container>
                     <Grid2
                         size={12}
@@ -18,6 +66,11 @@ function RegisterPage() {
                             type="text"
                             placeholder="Nombre completo"
                             fullWidth
+                            name="displayName"
+                            onChange={onChangeInput}
+                            value={displayName}
+                            error={!!displayNameInvalid && formSubmitted}
+                            helperText={displayNameInvalid}
                         />
                     </Grid2>
 
@@ -32,6 +85,11 @@ function RegisterPage() {
                             type="email"
                             placeholder="correo@gmail.com"
                             fullWidth
+                            name="email"
+                            onChange={onChangeInput}
+                            value={email}
+                            error={!!emailInvalid && formSubmitted}
+                            helperText={emailInvalid}
                         />
                     </Grid2>
 
@@ -46,6 +104,11 @@ function RegisterPage() {
                             type="password"
                             placeholder="Contraseña"
                             fullWidth
+                            name="password"
+                            onChange={onChangeInput}
+                            value={password}
+                            error={!!passwordInvalid && formSubmitted}
+                            helperText={passwordInvalid}
                         />
                     </Grid2>
 
@@ -55,7 +118,7 @@ function RegisterPage() {
                         sx={{ mb: 2, mt: 1, width: "100%" }}
                     >
                         <Grid2 size={12}>
-                            <Button variant="contained" fullWidth>
+                            <Button variant="contained" fullWidth type="submit">
                                 Crear cuenta
                             </Button>
                         </Grid2>
