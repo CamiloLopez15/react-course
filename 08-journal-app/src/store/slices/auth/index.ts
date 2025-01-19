@@ -7,7 +7,7 @@ const initialState: AuthState = {
     email: null,
     errorMessage: null,
     photoURL: null,
-    status: UserStatus.checking,
+    status: UserStatus.notAuthenticated,
 };
 
 export const authSlice = createSlice({
@@ -16,7 +16,9 @@ export const authSlice = createSlice({
     reducers: {
         login: (state, action) => {},
         logout: (state, action) => {},
-        checkingCredentials: (state, action) => {},
+        checkingCredentials: (state) => {
+            state.status = UserStatus.checking;
+        },
     },
 });
 
