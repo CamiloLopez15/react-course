@@ -3,6 +3,8 @@ import { Link as RouterLink } from "react-router";
 import AuthLayout from "../layout/AuthLayout";
 import { FormValidations, useForm } from "../../hooks/useForm";
 import { useState } from "react";
+import { useAppDispatch } from "../../store/hook";
+import { startCreatingUserWithEmailPassword } from "../../store/slices/auth/thunks";
 
 interface RegisterForm {
     email: string;
@@ -43,11 +45,15 @@ function RegisterPage() {
         formValidations
     );
 
+    const dispatch = useAppDispatch();
+
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log("Register");
         setFormSubmitted(true);
-        console.log({ email, password, displayName });
+        if (!isFormValid) return;
+
+        dispatch(startCreatingUserWithEmailPassword({ email, password, displayName }));
     };
 
     return (
